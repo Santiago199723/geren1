@@ -581,7 +581,12 @@ text-shadow: 2px 2px 4px rgba(161, 198, 201, 0.3); /* Sombra de texto */
                         }
 
                         row.innerHTML = `
-                            <td>WIN �/� LOSS<br/><input type="radio" class="resRadio" name="op-${i}-resRadio" value="1" onclick="Sheet_Update(0)" ${radioOff} /> ���<input type="radio" class="resRadio" name="op-${i}-resRadio" value="0" onclick="Sheet_Update(0)" ${radioOff} /></td>
+                            <td>
+                            WIN &nbsp;/&nbsp; LOSS<br/>
+                            <input type="radio" class="resRadio" name="op-${i}-resRadio" value="1" onclick="Sheet_Update(0)" ${radioOff} />
+                            &nbsp;
+                            <input type="radio" class="resRadio" name="op-${i}-resRadio" value="0" onclick="Sheet_Update(0)" ${radioOff} />
+                            </td>
                             <td><span id="op-${i}-lotSize">R$ 0.00</span></td>
                             <td><span id="op-${i}-profit">R$ 0.00</span></td>
                             <td><span id="op-${i}-balance">R$ 0.00</span></td>
