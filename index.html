@@ -1,714 +1,612 @@
-
-
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>INFINITY CRYPTO 2.0</title>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-        <style>
-            @font-face {
-                font-family: Quicksand;
-                src: url('../assets/fonts/Quicksand.ttf');
-            }
-            @font-face {
-                font-family: Nunito;
-                src: url('../assets/fonts/Nunito.ttf');
-            }
-            @font-face {
-                font-family: PoppinsLight;
-                src: url('../assets/fonts/Poppins-Light.ttf');
-            }
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-            @font-face {
-                font-family: PoppinsMedium;
-                src: url('../assets/fonts/Poppins-Medium.ttf');
-            }
-
-            @font-face {
-                font-family: PoppinsBlack;
-                src: url('../assets/fonts/Poppins-Black.ttf');
-            }
-
-            * {
-                margin: 0;
-                padding: 0;
-                text-decoration: none;
-                box-sizing: border-box;
-                border-spacing: 0;
-            }
-
-            input::-webkit-outer-spin-button,
-            input::-webkit-inner-spin-button {
-                -webkit-appearance: none;
-            }
-
-            html,
         body {
-            height: 100%;
-            width: 100%;
-            background: transparent !important;
-            background-color: transparent !important;
-        }
+    background-image: url('fundo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     }
 
 
-            #logo {
-                z-index: 10;
-                position: fixed;
-                top: calc(50% - 100px);
-                left: calc(50% - 100px);
-                height: 200px;
-                width: 200px;
-                bottom: 0;
-                right: 0;
-                opacity: 8%;
-            }
-
-            #header {
-                display: block;
-                height: 56px;
-                width: 100%;
-                color: white;
-                font-family: 'PoppinsLight';
-                font-size: 17px;
-                letter-spacing: 6px;
-                text-align: center;
-                line-height: 56px;
-                background: linear-gradient(to bottom, #750c8f, #01110E);
-                box-shadow: 0px 0px 12px 2px black;
-                text-shadow: 0px 2px 4px rgba(255,255,255,0.5);
-            }
-
-            #content {
-                z-index: 11;
-                height: calc(100% - 56px);
-                width: 100%;
-                display: block;
-                position: relative;
-                font-family: 'Quicksand';
-                text-align: center;
-                color: white;
-            }
-
-            h2 {
-            margin-top: 5px;
-            font-size: 27px;
+        button {
+            background: linear-gradient(45deg, #4f1483, #9d4edd);
+            border: none;
+            position: center;
+            padding: 13px 28px;
+            font-size: 18px;
+            margin-top: 15px;
             font-weight: bold;
-            text-align: center;
+            color: white;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            margin-left: 80px; /* ajuste o valor conforme necessário */
 
-            background: linear-gradient(135deg, #6a0dad, #ff4500);
-            /* Roxo e laranja escuro */
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        }
 
-            text-shadow: 2px 2px 4px rgba(161, 198, 201, 0.3);
-            /* Sombra de texto */
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 6px 15px rgba(157, 78, 221, 0.5);
+        }
+
+        button:active {
+            transform: scale(1);
         }
 
 
+        .container {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    max-width: 700px;
+    width: 95%;
+    position: relative;
+    z-index: 2;
+    padding-top: 80px;
+    overflow-y: auto;
+    max-height: 90vh;
+    transition: all 0.3s ease-in-out;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(164, 14, 205, 0.6) transparent;
 
-            #content > h2 {
-                color: white;
-                font-family: PoppinsMedium;
-                font-size: 30px;
-                letter-spacing: 1px;
-                text-align: center;
-                margin: 5px 0 15px 0;
-                text-shadow: 0px 2px 5px rgba(255,255,255,0.25);
-            }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-            #content > input {
-                display: block;
-                /* width  */
-            }
-
-            /* Mobile */
-            @media screen and (max-width: 768px) {
-                #content > h2 {
-                    font-size: 24px;
-                }
-
-                tr.paddingTop > td {
-                    padding-top: 10px;
-                    font-size: 12px;
-                }
-            }
-
-            #logoutButton {
-  color: #410938; /* mesma cor que você usava no X */
-  font-size: 18px;
-  cursor: pointer;
-  transition: color 0.2s ease, transform 0.2s ease;
+    border: 2px solid #a40ecd;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(164, 14, 205, 0.5);
+    animation: glowing-border 2s infinite ease-in-out;
 }
 
-#logoutButton:hover {
-  color: #1d021c; /* tom mais forte no hover */
-  transform: scale(1.2);
+/* Animação para o brilho roxo */
+@keyframes glowing-border {
+    0% {
+        box-shadow: 0 0 10px rgba(164, 14, 205, 0.4), 
+                    0 0 20px rgba(164, 14, 205, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(164, 14, 205, 0.7), 
+                    0 0 35px rgba(164, 14, 205, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(164, 14, 205, 0.4), 
+                    0 0 20px rgba(164, 14, 205, 0.3);
+    }
 }
 
-        </style>
-    </head>
-    <body>
-      
-        <div id="content">
-                    <div id="tablesDiv" style="width: 100%;">
-                        <span id="loginMenu"><span id="userEmail"></span> <span id="logoutButton" title="Sair da conta"><i class="fas fa-arrow-right-from-bracket"></i></span></span>
-                        <h2>INFINITY CRYPTO 2.0</h2>
-                <div class="tableContainer" style="position: relative;">
-                    <table id="cicleTable">
-                        <tbody>
-                            <tr>
-                                <td>Banca</td>
-                                <td>Total OPs.</td>
-                                <td>Acertos</td>
-                                <td>Payout</td>
-                            </tr>
-                            <tr>
-                                <td><input id="inputBalance" type="text" placeholder="R$ 0,00" value="50.0" /></td>
-                                <td><input id="inputTotalTrades" type="text" placeholder="7" value="7" /></td>
-                                <td><input id="inputWins" type="text" placeholder="2" value="2" /></td>
-                                <td><input id="inputPayoff" type="text" placeholder="1.90" value="1.90" /></td>
-                            </tr>
-                            <tr class="paddingTop">
-                                <td id="finalBalance">- Saldo -<br/><b>$0.00</b><br/>- Projetado -<br/><b>$0.00 (0.00%)</b></td>
-                                <td id="cicleStatus">Erros Permitidos:<br/>0/0 Erros</td>
-                                <td id="cicleStatus2">Acertos: 0.00%<br/>0/0 Acertos</td>
-                                <td><input onclick="Sheet_Update(1, true)" id="inputWins" type="button" placeholder="2" value="LIMPAR TUDO" style="background-color: #781578; border-bottom: 3px solid #49064b; padding: 16px 0px; width: 100%;" /></td>
-                                <!-- <td><input id="inputPayoff" type="button" placeholder="1.8" value="SALVAR CICLO" style="background-color: #14B99C; border-bottom: 3px solid #065849;"/></td> -->
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="tableContainer" style="height: 250px; overflow-y: scroll;">
-                    <table id="dataTable">
-                        <tr>
-                            <td>Resultado</td>
-                            <td>Lote</td>
-                            <td>Retorno</td>
-                            <td>Saldo Ciclo</td>
-                            <td>Status</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Win &nbsp;/&nbsp; Loss<br/><input type="radio" name="resRadio" value="1" /> &nbsp;&nbsp;&nbsp;<input type="radio" name="resRadio" value="0" /></td>
-                            <td><span id="op01-lot-size"></span></td>
-                            <td></td>
-                            <td></td>
-                            <td><span id=""></span></td>
-                            <td><span id=""></span></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            
-            <div id="loadingDiv"><img height="200px" width="200px" src="../assets/images/tools/loading.svg" alt="Carregando..."></div>
-            <style>
-                #loginMenu {
-                    display: block;
-                    position: relative;
-                    text-align: left;
-                    width: 400px;
-                    max-width: 90%;
-                    margin: 0 auto;
-                    padding: 10px 0px;
-                }
-
-                
-
-                #cicleTable input {
-                    width: 70%;
-                    margin-top: 4px;
-                    padding: 8px 0px;
-                    color: white;
-                    background-color: rgba(0,0,0,0.2);
-                    border: none;
-                    border-bottom: 2px solid #691066;
-                    border-radius: 5px;
-                    font-size: 14px;
-                    text-align: center;
-                    transition: .4s;
-                    cursor: pointer;
-                }
-
-                #cicleTable input:focus {
-                    border-bottom: 2px solid #7c1887;
-                }
-
-                .tableContainer { margin-top: 20px; }
-                .tableContainer, #cicleTable, #dataTable {
-                    width: 100%;
-                }
-
-                #dataTable {
-                    overflow: auto;
-                }
-
-                #dataTable td {
-                    font-size: 18px;
-                    padding: 6px 0px;
-                    border-bottom: 1px solid rgba(255,255,255,0.1);
-                }
-
-                #dataTable tr:first-child {
-                    font-size: 14px;
-                    background-color: rgba(0,0,0,0.2);
-                    padding: 10px 0px;
-                }
+/* Estilo do scrollbar no Chrome */
+.container::-webkit-scrollbar {
+    width: 8px;
+}
+.container::-webkit-scrollbar-thumb {
+    background: rgba(164, 14, 205, 0.6);
+    border-radius: 10px;
+}
 
 
-                #dataTable tr:first-child td:first-child {
-                    border-top-left-radius: 5px;
-                }
 
-                #dataTable tr:first-child td:last-child {
-                    border-top-right-radius: 5px;
-                }
-
-                #dataTable span {
-                    text-align: center;
-                }
-
-                /* customizing scroll color */
-                .tableContainer::-webkit-scrollbar {
-                    width: 10px;
-                    background: transparent;
-                }
-
-                .tableContainer::-webkit-scrollbar-thumb {
-                    width: 8px;
-                    border-radius: 3px;
-                    background-color: #7c0a84;
-                }
+/* Opcional: remover efeitos de hover no container */
+.container:hover {
+    box-shadow: none;
+    border-color: transparent;
+}
 
 
-                tr.paddingTop > td {
-                    padding-top: 10px;
-                }
 
-                #loadingDiv {
-                    z-index: 100;
-                    display: none;
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background-color: rgba(40, 5, 36, 0.8);
-                    opacity: 0.3;
-                }
+h1 {
+    text-align: center;
+    color: #fff;
+    font-size: 2em;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
 
-                #loadingDiv > img {
-                    position: absolute;
-                    top: calc(50% - 100px);
-                    left: calc(50% - 100px);
-                }
+.input-group {
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
 
-                
-               
-            </style>
-            <script>
-                const userID = '6287',
-                    userSSID = 'uH2c5i6n0CoRzpqMKBycBFO5vBmQqbiEB76FwCQqypnfnNmnCSCmOx8hAxRQTlHw';
+.input-group label {
+    margin-bottom: 8px;
+    color: #e0e0e0;
+    font-weight: 500;
+    font-size: 1rem;
+}
 
-                var updateRequest = 0, loadingTimeout = 0;
-                var loadingDiv = document.getElementById('loadingDiv');
-                var inputBalance = document.getElementById('inputBalance'),
-                    inputTotalTrades = document.getElementById('inputTotalTrades'),
-                    inputWins = document.getElementById('inputWins'),
-                    inputPayoff = document.getElementById('inputPayoff'),
-                    finalBalance = document.getElementById('finalBalance'),
-                    cicleStatus = document.getElementById('cicleStatus'),
-                    cicleStatus2 = document.getElementById('cicleStatus2');
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.081);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
 
-                var timeStart = 0;
+.input-group input::placeholder {
+    color: #bbb;
+    font-style: italic;
+    transition: color 0.3s ease;
+}
 
-                // Conectando websocket
-                var socket = null,
-                    socketInterval = 0;
+.input-group input:focus {
+    border: 1px solid #a40ecd;
+    box-shadow: 0 0 12px rgba(164, 14, 205, 0.4);
+    background: rgba(255, 255, 255, 0.08);
+}
 
-                function Socket_Create() {
-                    socket = null;
-                    socket = new WebSocket('wss://ws3.estrategiastarget.com:8085');
-                    socket.addEventListener('open', function (event) {
-                        clearInterval(socketInterval);
-                        Sheet_Update(0);
-                    });
-
-                    socket.addEventListener('close', function (event) {
-                        clearInterval(socketInterval);
-                        socketInterval = setInterval(() => {
-                            console.log('[Aviso] Erro de conexão. Reconectando...');
-                            Socket_Create();
-                        }, 10000);
-                    });
-
-                    socket.addEventListener('message', function (event) {
-                        clearInterval(socketInterval);
-                        console.log('Tempo gasto -> '+(Date.now() - timeStart));
-                        console.log('Recebido do servidor:\n', event.data);
-                        var data = JSON.parse(event.data);
-                        if(data['type'] == 'update') {
-                            let tradesData = data['data'];
-                            let lossAllowed = parseInt(inputTotalTrades.value) - parseInt(inputWins.value),
-                                lossCount = 0,
-                                winsCount = 0;
-                            let lastRow = "", lastBalance = 0, profitTarget = parseFloat(data['data']['profitTarget']);
-
-                            let cicleDone = false;
-                            for(let i = 0; i < parseInt(inputTotalTrades.value); i++) {
-                                if(i < tradesData['lots'].length) {
-                                    if(tradesData['lots'][i] == "") tradesData['lots'][i] = 0;
-                                    if(tradesData['profit'][i] == "") tradesData['profit'][i] = 0;
-                                    if(tradesData['balance'][i] == "") tradesData['balance'][i] = 0;
-                                    if(document.getElementById(`op-${i}-lotSize`)) {
-                                        document.getElementById(`op-${i}-lotSize`).innerHTML = "$ "+parseFloat(tradesData['lots'][i]).toFixed(2);
-                                        document.getElementById(`op-${i}-profit`).innerHTML = (parseFloat(tradesData['profit'][i]) > 0 ? "+" : "")+ "$ "+parseFloat(tradesData['profit'][i]).toFixed(2)+" ("+(100 * parseFloat(tradesData['profit'][i]) / parseFloat(inputBalance.value)).toFixed(2)+" %)";
+.input-group input:hover {
+    border-color: rgba(164, 14, 205, 0.3);
+}
 
 
-                                        const selectedRadio = document.querySelector(`input[name=op-${i}-resRadio]:checked`);
-                                        if(selectedRadio) {
-                                            if(parseFloat(tradesData['profit'][i]) == 0) {
-                                                lossCount++;
-                                                document.getElementById(`op-${i}-profit`).style.color = 'white';
-                                            } else if(parseFloat(tradesData['profit'][i]) > 0) {
-                                                winsCount++;
-                                                document.getElementById(`op-${i}-profit`).style.color = '#14B99C';
-                                            }
-                                            if(parseFloat(tradesData['balance'][i]) > inputBalance.value) {
-                                                document.getElementById(`op-${i}-balance`).style.color = '#14B99C';
-                                            } else if(parseFloat(tradesData['balance'][i]) < inputBalance.value) {
-                                                document.getElementById(`op-${i}-balance`).style.color = 'white';
+        .opportunities {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        .opportunity {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 15px;
+            flex: 1;
+            min-width: 240px;
+            max-width: 300px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(230, 230, 250, 0.5));
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            position: relative;
+        }
+        .opportunity:hover {
+            transform: translateY(-5px);
+        }
+        .opportunity.lost {
+            background: linear-gradient(135deg, #ffebeb, #ffcccc);
+            pointer-events: none;
+        }
+        .opportunity.lost::after {
+            content: "→";
+            font-size: 40px;
+            color: #f44336;
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            transform: translate(-50%, -50%);
+        }
+        .opportunity.won {
+            background: linear-gradient(135deg, #e0f7e9, #ccffcc);
+            pointer-events: none;
+        }
+        .opportunity.won::after {
+            content: "→";
+            font-size: 40px;
+            color: #4caf50;
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            transform: translate(-50%, -50%);
+        }
+        .opportunity h2 {
+            font-size: 18px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .entry {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .entry strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .entry button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        .entry button:hover {
+            background-color: #45a049;
+        }
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+            margin-left: 20px; /* ajuste o valor conforme necessário */
 
-                                            }
+        }
+        .buttons button {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 30px; /* deixa redondo e mais estiloso */
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    margin: 0 10px;
+    text-indent: -9999px;
+    overflow: hidden;
+    padding: 0;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    box-shadow: none;
+}
 
-                                            if (lossCount > lossAllowed) {
-    document.getElementById(`op-${i}-balance`).innerHTML = "$ " + parseFloat((winsCount + lossCount) > 0 ? tradesData['balance'][i + 1] : inputBalance.value).toFixed(2);
-    lastBalance = 0;
-    cicleDone = true;
-    cicleStatus.innerHTML = "❌ DERROTA!";
-    cicleStatus2.innerHTML = "🚫 CICLO ENCERRADO POR LOSS";
+.buttons button:hover {
+    box-shadow: 0 0 12px rgba(52, 17, 72, 0.475), 
+                0 0 25px rgba(56, 11, 74, 0.863), 
+                0 0 40px rgba(67, 14, 82, 0.4);
+    transform: scale(1.05); /* dá aquele toquezinho de destaque */
+    border-radius: 30px;
+}
+
+
+/* Efeito hover opcional */
+.buttons button:hover {
+    transform: scale(1.05);
+}
+
+/* Botões com imagem de fundo */
+.buttons button.win {
+    background-image: url('win.png');
+}
+
+.buttons button.lose {
+    background-image: url('loss.png');
+}
+
+.buttons button.reset {
+    background-image: url('reset.png');
+}
+
+
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            background-color: #000; /* Fundo preto */
+
+        }
+
+        #particle-canvas {
+    display: none;
+}
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            text-align: center;
+        }
+        .popup h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.5em;
+        }
+        .popup button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ab31cd;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(120, 18, 172, 0.5);
+            background: linear-gradient(45deg, #832aa6, #8505a9);
+        }
+        .popup button:hover {
+            background: linear-gradient(45deg, #6c0996, #850db8);
+            box-shadow: 0 4px 25px rgba(147, 8, 185, 0.7);
+        }
+
+        .logo-container {
+    width: 90px;
+    margin-top: -70px;
+    margin-bottom: 20px;
+    border-radius: 120%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     
-    alert(
-        "🚫 CICLO ENCERRADO POR LOSS 🚫\n\n" +
-        "❌ Você atingiu o limite de erros permitidos!\n\n" +
-        "💡 Dica: Espere o mercado ficar legal e tente novamente com calma.\n\n" +
-        "🔁 Por favor, inicie um novo ciclo para continuar operando."
-    );
-    continue;
+    /* Efeito de rotação */
+    animation: girar 16s linear infinite;
+}
 
-} else if (winsCount >= parseInt(inputWins.value)) {
-    document.getElementById(`op-${i}-balance`).innerHTML = "$ " + parseFloat((winsCount + lossCount) > 0 ? tradesData['balance'][i + 1] : inputBalance.value).toFixed(2);
-    lastBalance = inputBalance.value * (1 + (profitTarget / 100));
-    cicleDone = true;
-    cicleStatus.innerHTML = "✅ VITÓRIA!";
-    cicleStatus2.innerHTML = "🏁 CICLO ENCERRADO COM SUCESSO!";
-    
-    alert(
-        "🎉 CICLO ENCERRADO COM SUCESSO 🎉\n\n" +
-        "✅ Parabéns! Você atingiu o número de vitórias desejado!\n\n" +
-        "💰 Continue focado e siga com disciplina.\n\n" +
-        "🔁 Por favor, inicie um novo ciclo para continuar operando."
-    );
-    continue;
+/* Keyframes da animação */
+@keyframes girar {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 
+    </style>
+</head>
+<body>
+<canvas id="particle-canvas"></canvas>
+<div class="container">
+<img alt="Logo" class="logo-container" src="logo.png"/>
+<div class="input-group">
+<div class="input-group">
+<label for="banca">Valor da Banca (R$):</label>
+<input id="banca" placeholder="Insira o valor da banca" type="number"/>
+</div>
+<div class="input-group">
+<label for="payout">Payout (%):</label>
+<input id="payout" placeholder="Insira o payout" type="number"/>
+</div>
+<div class="input-group">
+<label for="divisoes">Divisões da Banca:</label>
+<input id="divisoes" oninput="validarDivisoes()" placeholder="Insira o número de divisões - Mínimo recomendado: 10" type="number"/>
+</div>
+<button onclick="calcular()">Calcular</button>
+<div class="opportunities" id="opportunities"></div>
+<div class="buttons">
+<button class="win" onclick="ganhei()">GANHEI</button>
+<button class="lose" onclick="perdi()">PERDI</button>
+<button class="reset" onclick="zerar()">ZERAR</button>
+</div>
+</div>
+<script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
 
-                                            var nextRow = document.getElementById(`op-${i}`).nextElementSibling;
-                                            if(nextRow) {
-                                                lastRow = nextRow;
-                                                nextRow.style.opacity = 1;
-                                                nextRow.style.background = "";
+        function validarDivisoes() {
+            const divisoesInput = document.getElementById('divisoes');
+            if (divisoesInput.value > 100) {
+                divisoesInput.value = '';
+                showPopup('O número máximo de divisões é 100');
+            }
+        }
 
-                                                let radios = nextRow.querySelectorAll('input');
-                                                for(let i = 0; i < radios.length; i++) {
-                                                    radios[i].removeAttribute('disabled');
-                                                }
-                                            }
-                                        }
-                                        document.getElementById(`op-${i}-balance`).innerHTML = "$ "+parseFloat((winsCount + lossCount) > 0 ? tradesData['balance'][i + 1] : inputBalance.value).toFixed(2);
-                                        if(winsCount + lossCount > 0) lastBalance = parseFloat(tradesData['balance'][i]); else lastBalance = parseFloat(inputBalance.value);
-                                    }
-                                } else {
-                                    if(cicleDone) {
-                                        document.getElementById(`op-${i}`).style.opacity = 0.5;
-                                        document.getElementById(`op-${i}`).style.background = "rgba(22,22,22,.7)";
-                                        document.getElementById(`op-${i}-lotSize`).innerHTML = "$ 0.00";
-                                        document.getElementById(`op-${i}-profit`).innerHTML = "$ 0.00";
-                                        document.getElementById(`op-${i}-profit`).style.color = 'white';
-                                        document.getElementById(`op-${i}-balance`).innerHTML = "$ 0.00";
-                                        document.getElementById(`op-${i}-balance`).style.color = 'white';
+        let bancaInicial = 0;
+        let bancaAtual = 0;
+        let divisao = 0;
+        let payout = 0;
+        let oportunidades = [];
+        let currentOpportunity = 0;
 
-                                        var line = document.getElementById(`op-${i}`);
-                                        if(line) {
-                                        console.log(i+" -> line found");
-                                            let radios = line.querySelectorAll('input');
-                                            console.log(radios);
-                                            for(let i = 0; i < radios.length; i++) {
-                                                radios[i].setAttribute('disabled', 'true');
-                                                radios[i].checked = false;
-                                            }
-                                        }
+        function calcular() {
+            bancaInicial = parseFloat(document.getElementById('banca').value);
+            payout = parseFloat(document.getElementById('payout').value) / 100;
+            divisao = parseInt(document.getElementById('divisoes').value);
+            bancaAtual = bancaInicial;
 
-                                    }
-                                }
-                            }
-
-                            if(!cicleDone) {
-                                cicleStatus.innerHTML = "Erros Permitidos:<br/>"+lossCount+"/"+lossAllowed+" Erros";
-                                cicleStatus2.innerHTML = "Acertos: <b>"+(100 * (inputWins.value / inputTotalTrades.value)).toFixed(2)+"</b>%<br/>"+winsCount+"/"+inputWins.value+" Acertos";
-                            }
-                            finalBalance.innerHTML = "- Saldo- <br/><b>$ "+(winsCount+lossCount == 0 ? parseFloat(inputBalance.value) : lastBalance).toFixed(2)+"</b><br/>- Projeção -<br/><b style=\"color: #14B99C;\">$ "+(parseFloat(inputBalance.value) * (1 + (profitTarget / 100))).toFixed(2)+" ("+(profitTarget).toFixed(2)+" %)</b>";
-
-                            if(cicleDone) {
-                                if(lastRow) {
-                                    let nextRow = lastRow.nextElementSibling;
-                                    if(nextRow) {
-                                        nextRow.style.opacity = 0.5;
-                                        nextRow.style.background = "rgba(22,22,22,.7)";
-
-                                        let radios = lastRow.nextElementSibling.querySelectorAll('input');
-                                        for(let i = 0; i < radios.length; i++) {
-                                            radios[i].setAttribute('disabled', 'true');
-                                            radios[i].checked = false;
-                                        }
-                                    } else {
-                                        if(lossCount + winsCount < parseInt(inputTotalTrades.value)) {
-                                            lastRow.style.opacity = 0.5;
-                                            lastRow.style.background = "rgba(22,22,22,.7)";
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        if(loadingTimeout != 0) clearTimeout(loadingTimeout);
-                        loadingDiv.style.display = 'none';
+            oportunidades = [];
+            for (let i = 0; i < divisao; i++) {
+                let entradas = [];
+                let valor = bancaInicial / divisao;
+                for (let j = 0; j < 4; j++) {
+                    let lucro = valor * payout;
+                    entradas.push({
+                        valor: valor.toFixed(2),
+                        lucro: lucro.toFixed(2),
+                        valorTotal: (valor + lucro).toFixed(2)
                     });
+                    valor += lucro;
                 }
-                Socket_Create();
+                oportunidades.push(entradas);
+            }
+            renderOportunidades();
+        }
 
-
-
-                // Clear sessionId cookie
-                async function User_GetData() {
-                    let request = await fetch('../assets/php/tools/user-validation.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ sessionId: userSSID })
-                    });
-
-                    if(request.ok) {
-                        let response = await request.text();
-                        console.log(response);
-                        response = JSON.parse(response);
-                        if(response['status'] == 'ok') {
-                            document.getElementById('userEmail').innerHTML = response['userEmail'];
-                        } else {
-                            if(reponse['error'] == 'invalid-session') alert("Sua sessão expirou!\nPor favor, faça login novamente.");
-                            else alert("Houve algum erro!\nPor favor, tente novamente mais tarde.\n\nCódigo de erro:  "+response['error']);
-                            User_Logout();
-                        }
+        function renderOportunidades() {
+            const container = document.getElementById('opportunities');
+            container.innerHTML = '';
+            oportunidades.forEach((oportunidade, index) => {
+                const oppDiv = document.createElement('div');
+                oppDiv.classList.add('opportunity');
+                oppDiv.id = `opportunity-${index}`;
+                oppDiv.innerHTML = `<h2>Oportunidade ${index + 1}</h2>`;
+                oportunidade.forEach((entrada, idx) => {
+                    const entryDiv = document.createElement('div');
+                    entryDiv.classList.add('entry');
+                    entryDiv.innerHTML = `
+                        <div>
+                            <strong>Entrada ${String.fromCharCode(65 + idx)}:</strong>
+                            R$${entrada.valor} (Lucro: R$${entrada.lucro})
+                        </div>
+                        <button onclick="copiarValor('${entrada.valor}')">Copiar</button>`;
+                    if (idx === 3) {
+                        entryDiv.innerHTML += `<div><strong>Total:</strong> R$${entrada.valorTotal}</div>`;
                     }
-                }
-
-
-                async function Sheet_Update(mode = 0, updateBoth = false) {
-                    if(mode == 0) {
-                        loadingDiv.style.display = 'block';
-                        if(loadingTimeout != 0) clearTimeout(loadingTimeout);
-                        loadingTimeout = setTimeout(() => {
-                            loadingDiv.style.display = 'none';
-                        }, 5000);
-                        let tradesData = [];
-                        let tradesElements = document.getElementsByClassName('resRadio');
-                        for(let i = 0; i < tradesElements.length; i++) {
-                            if(tradesElements[i].checked) tradesData.push(tradesElements[i].value);
-                        }
-
-
-                        let sheetData = {
-                            balance: inputBalance.value,
-                            totalTrades: inputTotalTrades.value,
-                            totalWins: inputWins.value,
-                            payoff: inputPayoff.value.replace(',', '.'),
-                            trades: tradesData
-                        };
-                        console.log(sheetData);
-                        timeStart = Date.now();
-                        socket.send(JSON.stringify({ type: 'update', userID: userID, data: sheetData }));
-                        updateRequest = 0;
-                    }  else if(mode == 1) {
-                        let totalTrades = document.getElementById('inputTotalTrades').value;
-                        let dataTable = document.getElementById('dataTable');
-
-                        //  atualizar tabela mantendo valores antigos
-                        dataTable.innerHTML = `
-                            <tr>
-                                <td>Resultado</td>
-                                <td>Lote</td>
-                                <td>Retorno</td>
-                                <td>Saldo Ciclo</td>
-                            </tr>
-                        `;
-
-                        for(let i = 0; i < totalTrades; i++) {
-                            let row = document.createElement('tr');
-                            let radioOff = "", radioCheckWin = "", radioCheckLoss = "";
-                            row.setAttribute('id', `op-${i}`);
-                            if(i > 0) {
-                                row.style.opacity = 0.5;
-                                row.style.background = "rgba(22,22,22,.7)";
-                                radioOff = "disabled";
-                            }
-
-                            row.innerHTML = `
-                                <td>Win &nbsp;/&nbsp; Loss<br/><input type="radio" class="resRadio" name="op-${i}-resRadio" value="1" onclick="Sheet_Update(0)" ${radioOff} /> &nbsp;&nbsp;&nbsp;<input type="radio" class="resRadio" name="op-${i}-resRadio" value="0" onclick="Sheet_Update(0)" ${radioOff} /></td>
-                                <td><span id="op-${i}-lotSize">$ 0.00</span></td>
-                                <td><span id="op-${i}-profit">$ 0.00</span></td>
-                                <td><span id="op-${i}-balance">$ 0.00</span></td>
-                            `;
-                            dataTable.appendChild(row);
-                        }
-
-                        if(updateBoth) Sheet_Update(0);
-                    }
-                }
-
-                function User_Logout() {
-                    document.cookie = 'sessionId=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-                    window.location.reload();
-                }
-
-                var bannerLoopInterval = 0, bannerLoopTimeout = 0, bannerLoopTime = 10000, bannerChangeTime = 0;
-                function Util_ImageUpdate(mode = 0) {
-                    let time = Date.now();
-                    if(time - bannerChangeTime < 1000) return;
-
-                    if(mode == 0) {
-                        // Ajusta a altura do contêiner de banners
-                        document.getElementById('bannersDiv').style.height = (document.documentElement.clientHeight - 100 - document.getElementById('tablesDiv').offsetHeight)+"px";
-                        
-                        // Reinicia o intervalo automático
-                        clearInterval(bannerLoopInterval);
-                        bannerLoopTime = 10000; // Reseta o temporizador para 10 segundos
-                        
-                        bannerLoopInterval = setInterval(() => {
-                            if(bannerLoopTime <= 0) {
-                                // Avança para o próximo banner automaticamente
-                                Util_ImageUpdate(2); // Usa o modo "próximo"
-                                bannerLoopTime = 10000; // Reinicia o temporizador
-                            }
-                            bannerLoopTime -= 100;
-                        }, 100);
-                    } else {
-                        // Reinicia o temporizador quando um botão é clicado
-                        bannerLoopTime = 10000;
-                        
-                        var banners = document.getElementById('bannersDiv').querySelectorAll('img');
-                        var activeBanner = document.getElementById('bannersDiv').querySelector('img.active');
-                        
-                        // Determina qual será o próximo banner
-                        var targetBanner, beforeTargetBanner;
-                        if(mode == 1) { // Botão da esquerda (voltar)
-                            targetBanner = activeBanner.previousElementSibling;
-                            if(targetBanner) beforeTargetBanner = targetBanner.previousElementSibling;
-                            if(!targetBanner || targetBanner.tagName != 'IMG') {
-                                targetBanner = banners[banners.length - 1];
-                                beforeTargetBanner = targetBanner.previousElementSibling;
-                            }
-                            if(!beforeTargetBanner || beforeTargetBanner.tagName != 'IMG') {
-                                beforeTargetBanner = banners[banners.length - 1];
-                            }
-                        } else { // Botão da direita (avançar)
-                            targetBanner = activeBanner.nextElementSibling;
-                            if(!targetBanner || targetBanner.tagName != 'IMG') {
-                                targetBanner = banners[0];
-                            }
-                        }
-                        
-                        // Define a direção da transição
-                        var direction = (mode == 1) ? 'right' : 'left';
-                        
-                        // Remove todas as classes de todos os banners e define opacity 0
-                        for(let i = 0; i < banners.length; i++) {
-                            banners[i].classList.remove('active', 'inactive-left', 'inactive-right');
-                            if(banners[i] !== activeBanner && banners[i] !== targetBanner) {
-                                banners[i].style.opacity = '0';
-                            } else {
-                                banners[i].style.opacity = '1';
-                            }
-                        }
-                        
-                        // Posiciona o banner alvo no lado correto antes da transição
-                        if(mode == 1) { // Se estamos voltando
-                            beforeTargetBanner.classList.add('inactive-left'); // Posiciona o banner alvo à esquerda
-                            
-                        }
-                        
-                        // Adiciona as classes corretas
-                        targetBanner.classList.add('active');
-                        activeBanner.classList.add('inactive-' + direction);
-                        activeBanner.style.opacity = 0;
-                        bannerChangeTime = time;
-                    }
-                }
-
-                function Util_NewTab(url) {
-                    window.open(url, '_blank');
-                }
-
-                // detecting enter pressing in inputs inside cicleTable
-                document.querySelectorAll('#cicleTable input').forEach(function (input) {
-                    input.addEventListener('focus', function (event) {
-                        //set atribute
-                        input.setAttribute('oldValue', input.value);
-                    });
-
-                    input.addEventListener('keyup', function (event) {
-                        // if enter any of enter keys (numpad or not)
-                        if(event.keyCode == 13) {
-                            input.blur();
-                            /*
-                            let nextInput = input.parentElement.parentElement.nextElementSibling.querySelector('input');
-                            if(nextInput) nextInput.focus();
-                            else input.blur();
-                            */
-                        }
-                    });
-
-                    input.addEventListener('blur', function (event) {
-                        // if value changed
-                        if(input.value != input.getAttribute('oldValue')) {
-                            // checking if input.value is number
-                            input.value = input.value.replace(',', '.');
-                            if(isNaN(input.value) || input.value.trim() == "") {
-                                alert("Valor inválido: "+input.value+".\n\nDigite apenas números!");
-                                input.value = input.getAttribute('oldValue');
-                                return;
-                            }
-
-                            if(input.getAttribute('id') == "inputTotalTrades") {
-                                if(input.value > 25 || input.value < 2) {
-                                    alert("Valor inválido: "+input.value+".\n\nO número de operações deve ser entre 2 e 25!");
-                                    input.value = input.getAttribute('oldValue');
-                                    return;
-                                }
-                                Sheet_Update(1, true);
-                            } else {
-                                Sheet_Update(0, true);
-                            }
-                        }
-                    });
+                    oppDiv.appendChild(entryDiv);
                 });
+                container.appendChild(oppDiv);
+            });
+        }
 
-                document.getElementById('logoutButton').addEventListener('click', User_Logout);
-                document.addEventListener('DOMContentLoaded', () => { Sheet_Update(1, true); User_GetData(); Util_ImageUpdate(); });
-                //resize
-                window.addEventListener('resize', () => { Util_ImageUpdate(); });
-            </script>
-                </div>
-    </body>
-</html>
+        function copiarValor(valor) {
+            navigator.clipboard.writeText(valor).then(() => {
+                showPopup(`Valor R$${valor} copiado!`);
+            });
+        }
+
+        function showPopup(message) {
+            const popup = document.createElement('div');
+            popup.classList.add('popup');
+            popup.innerHTML = `<h2>${message}</h2><button onclick="closePopup(this)">OK</button>`;
+            document.body.appendChild(popup);
+        }
+
+        function closePopup(button) {
+            const popup = button.parentElement;
+            popup.remove();
+        }
+
+        function ganhei() {
+            if (currentOpportunity < oportunidades.length) {
+                const oppDiv = document.getElementById(`opportunity-${currentOpportunity}`);
+                oppDiv.classList.add('won');
+                currentOpportunity++;
+                showPopup('Próximo quadrante');
+            } else {
+                showPopup('Todas as oportunidades foram usadas.');
+            }
+        }
+
+        function perdi() {
+            if (currentOpportunity < oportunidades.length) {
+                const oppDiv = document.getElementById(`opportunity-${currentOpportunity}`);
+                oppDiv.classList.add('lost');
+                currentOpportunity++;
+                showPopup('Próximo quadrante');
+            } else {
+                showPopup('Todas as oportunidades foram usadas.');
+            }
+        }
+
+        function zerar() {
+            document.getElementById('banca').value = '';
+            document.getElementById('payout').value = '';
+            document.getElementById('divisoes').value = '';
+            document.getElementById('opportunities').innerHTML = '';
+            oportunidades = [];
+            currentOpportunity = 0;
+        }
+
+        // Função para criar o efeito de partículas interligadas
+        function initParticles() {
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+            const particles = [];
+            const particleCount = 100;
+            const maxDistance = 100;
+
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            function random(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+
+            function createParticles() {
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push({
+                        x: random(0, canvas.width),
+                        y: random(0, canvas.height),
+                        size: random(1, 3),
+                        speedX: random(-0.5, 0.5),
+                        speedY: random(-0.5, 0.5)
+                    });
+                }
+            }
+
+            function moveParticles() {
+                particles.forEach(particle => {
+                    particle.x += particle.speedX;
+                    particle.y += particle.speedY;
+
+                    if (particle.x < 0 || particle.x > canvas.width) {
+                        particle.speedX *= -1;
+                    }
+
+                    if (particle.y < 0 || particle.y > canvas.height) {
+                        particle.speedY *= -1;
+                    }
+                });
+            }
+
+            function drawParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = 'rgba(0, 255, 0, 0.5)'; // Partículas verdes
+                particles.forEach(particle => {
+                    ctx.beginPath();
+                    ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                    ctx.closePath();
+                    ctx.fill();
+                });
+            }
+
+            function connectParticles() {
+                for (let a = 0; a < particles.length; a++) {
+                    for (let b = a + 1; b < particles.length; b++) {
+                        const dx = particles[a].x - particles[b].x;
+                        const dy = particles[a].y - particles[b].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < maxDistance) {
+                            ctx.strokeStyle = 'rgba(0, 255, 0, 0.1)'; // Linhas verdes
+                            ctx.lineWidth = 1;
+                            ctx.beginPath();
+                            ctx.moveTo(particles[a].x, particles[a].y);
+                            ctx.lineTo(particles[b].x, particles[b].y);
+                            ctx.stroke();
+                            ctx.closePath();
+                        }
+                    }
+                }
+            }
+
+            
+
+            function animateParticles() {
+                moveParticles();
+                drawParticles();
+                connectParticles();
+                particles.forEach(particle => {
+                    particle.size = (Math.sin(Date.now() / 500) + 1) * 1.5; // Piscar das partículas
+                });
+                requestAnimationFrame(animateParticles);
+            }
+
+            canvas.addEventListener('mousemove', (e) => {
+                particles.forEach(particle => {
+                    const dx = e.clientX - particle.x;
+                    const dy = e.clientY - particle.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 100) {
+                        const angle = Math.atan2(dy, dx);
+                        particle.speedX = Math.cos(angle);
+                        particle.speedY = Math.sin(angle);
+                    }
+                });
+            });
+
+            createParticles();
+            animateParticles();
+        }
+
+        window.onload = initParticles;
+    </script>
+</div></body></html>
